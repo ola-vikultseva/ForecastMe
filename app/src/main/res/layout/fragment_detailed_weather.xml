@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="46dp"
+    android:paddingEnd="46dp"
+    tools:context=".ui.weather.future.detail.DetailedWeatherFragment">
+
+    <TextView
+        android:id="@+id/textView_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_temperature"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Moderate or heavy rain with thunder" />
+
+    <TextView
+        android:id="@+id/textView_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
+        android:textSize="54sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25"
+        tools:text="26°C" />
+
+    <include
+        android:id="@+id/layout_temperature_day_parts"
+        layout="@layout/layout_temperature_day_parts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_temperature" />
+
+    <ImageView
+        android:id="@+id/imageView_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_temperature"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textView_temperature"
+        app:layout_constraintWidth_percent="0.3"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/ic_weather_sunny" />
+
+    <include
+        android:id="@+id/layout_weather_data"
+        layout="@layout/layout_weather_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_temperature_day_parts" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

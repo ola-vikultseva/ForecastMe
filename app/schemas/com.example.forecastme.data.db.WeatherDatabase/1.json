@@ -1,0 +1,266 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "a5f5671a4a39791c8af070c48f140d3b",
+    "entities": [
+      {
+        "tableName": "current_weather",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `temperature_metric` REAL NOT NULL, `temperature_imperial` REAL NOT NULL, `feels_like_metric` REAL NOT NULL, `feels_like_imperial` REAL NOT NULL, `wind_speed_metric` REAL NOT NULL, `wind_speed_imperial` REAL NOT NULL, `wind_direction` TEXT NOT NULL, `pressure_metric` REAL NOT NULL, `pressure_imperial` REAL NOT NULL, `humidity` INTEGER NOT NULL, `uv_index` REAL NOT NULL, `description` TEXT NOT NULL, `icon_url` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temperatureMetric",
+            "columnName": "temperature_metric",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temperatureImperial",
+            "columnName": "temperature_imperial",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "feelsLikeMetric",
+            "columnName": "feels_like_metric",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "feelsLikeImperial",
+            "columnName": "feels_like_imperial",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "windSpeedMetric",
+            "columnName": "wind_speed_metric",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "windSpeedImperial",
+            "columnName": "wind_speed_imperial",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "windDirection",
+            "columnName": "wind_direction",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pressureMetric",
+            "columnName": "pressure_metric",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pressureImperial",
+            "columnName": "pressure_imperial",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "humidity",
+            "columnName": "humidity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uvIndex",
+            "columnName": "uv_index",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "iconUrl",
+            "columnName": "icon_url",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "future_weather",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`day_of_week_int` INTEGER NOT NULL, `timestamp_sec` INTEGER NOT NULL, `avg_temperature_metric` REAL NOT NULL, `avg_temperature_imperial` REAL NOT NULL, `avg_humidity` INTEGER NOT NULL, `description` TEXT NOT NULL, `icon_url` TEXT NOT NULL, `uv_index` REAL NOT NULL, PRIMARY KEY(`day_of_week_int`))",
+        "fields": [
+          {
+            "fieldPath": "dayOfWeekInt",
+            "columnName": "day_of_week_int",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestampSec",
+            "columnName": "timestamp_sec",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "avgTemperatureMetric",
+            "columnName": "avg_temperature_metric",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "avgTemperatureImperial",
+            "columnName": "avg_temperature_imperial",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "avgHumidity",
+            "columnName": "avg_humidity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "iconUrl",
+            "columnName": "icon_url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uvIndex",
+            "columnName": "uv_index",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "day_of_week_int"
+          ]
+        }
+      },
+      {
+        "tableName": "hourly_weather",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`day_of_week_int` INTEGER NOT NULL, `hour_of_day_int` INTEGER NOT NULL, `timestamp_sec` INTEGER NOT NULL, `temperature_metric` REAL NOT NULL, `temperature_imperial` REAL NOT NULL, `wind_speed_metric` REAL NOT NULL, `wind_speed_imperial` REAL NOT NULL, `wind_degrees` INTEGER NOT NULL, `pressure_metric` REAL NOT NULL, `pressure_imperial` REAL NOT NULL, PRIMARY KEY(`day_of_week_int`, `hour_of_day_int`), FOREIGN KEY(`day_of_week_int`) REFERENCES `future_weather`(`day_of_week_int`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "dayOfWeekInt",
+            "columnName": "day_of_week_int",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hourOfDayInt",
+            "columnName": "hour_of_day_int",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestampSec",
+            "columnName": "timestamp_sec",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temperatureMetric",
+            "columnName": "temperature_metric",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temperatureImperial",
+            "columnName": "temperature_imperial",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "windSpeedMetric",
+            "columnName": "wind_speed_metric",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "windSpeedImperial",
+            "columnName": "wind_speed_imperial",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "windDegrees",
+            "columnName": "wind_degrees",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pressureMetric",
+            "columnName": "pressure_metric",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pressureImperial",
+            "columnName": "pressure_imperial",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "day_of_week_int",
+            "hour_of_day_int"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_hourly_weather_hour_of_day_int",
+            "unique": false,
+            "columnNames": [
+              "hour_of_day_int"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_hourly_weather_hour_of_day_int` ON `${TABLE_NAME}` (`hour_of_day_int`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "future_weather",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "day_of_week_int"
+            ],
+            "referencedColumns": [
+              "day_of_week_int"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a5f5671a4a39791c8af070c48f140d3b')"
+    ]
+  }
+}
